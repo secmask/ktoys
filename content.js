@@ -83,12 +83,22 @@ document.ondblclick = function(e){
     }
     let theDate = new Date(text);
     let dateString = theDate.toUTCString();
-    $(".mpopup").text(`${dateString} (${time_ago(theDate)})`);
-    $(".mpopup").css({left: e.pageX});
-    $(".mpopup").css({top: e.pageY});
-    $(".mpopup").show();
-    console.info(dateString);
+
+    let m = document.getElementById("myPopup");
+    m.innerText = `${dateString} (${time_ago(theDate)})`;
+   
+    m.style.position = "absolute";
+    m.style.left = e.pageX+"px";
+    m.style.top = e.pageY+"px";
+    console.log(e.pageX,e.pageY);
+    // $(".mpopup").text(`${dateString} (${time_ago(theDate)})`);
+    // $(".mpopup").css({left: e.pageX});
+    // $(".mpopup").css({top: e.pageY});
+    // $(".mpopup").show();
+    m.style.display = "block";
+    console.info("no jq");
 }
 document.body.onclick = function (){
-    $(".mpopup").hide();
+  let e = document.getElementById("myPopup");
+  e.style.display = "none";
 };
