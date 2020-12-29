@@ -69,9 +69,11 @@ function time_ago(time) {
 }
 document.ondblclick = function(e){
     let text = getSelectionText();
-    if (isNaN(+text)){
-        return;
+    text = text.match(`(\\d+)`)
+    if (text==null){
+      return
     }
+    text = text[1];
     if (text.length==19){
         text = text/1000000;
     } else if (text.length==10) {
@@ -90,13 +92,7 @@ document.ondblclick = function(e){
     m.style.position = "absolute";
     m.style.left = e.pageX+"px";
     m.style.top = e.pageY+"px";
-    console.log(e.pageX,e.pageY);
-    // $(".mpopup").text(`${dateString} (${time_ago(theDate)})`);
-    // $(".mpopup").css({left: e.pageX});
-    // $(".mpopup").css({top: e.pageY});
-    // $(".mpopup").show();
     m.style.display = "block";
-    console.info("no jq");
 }
 document.body.onclick = function (){
   let e = document.getElementById("myPopup");
