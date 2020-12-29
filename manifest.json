@@ -1,0 +1,26 @@
+{
+    "manifest_version": 2,
+    "name": "KTool",
+    "version": "1.0.0",
+    "description": "KTool collect some useful tools",
+    "short_name": "Short Sample Name",
+    "permissions": ["activeTab", "declarativeContent", "storage", "<all_urls>"],
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "css": ["content.css"],
+        "js": ["jquery.js","content.js"]
+      }
+    ],
+    "background": {
+      "scripts": ["background.js"]
+    },
+    "browser_action": {
+      "default_title": "Convert to date",
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icons/calendar.png",
+        "32": "icons/calendar.png"
+      }
+    }
+   }

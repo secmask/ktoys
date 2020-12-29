@@ -1,0 +1,8 @@
+.mpopup {
+    display: none;
+    position: absolute;
+    color: rgb(14, 13, 13);
+    border: solid 1px #ddd;
+    background: rgb(245, 245, 245);
+    text-align: center;
+}
