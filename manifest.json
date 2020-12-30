@@ -9,7 +9,7 @@
       {
         "matches": ["<all_urls>"],
         "css": ["content.css"],
-        "js": ["content.js"]
+        "js": ["common.js","content.js"]
       }
     ],
     "background": {
