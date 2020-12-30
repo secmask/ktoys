@@ -1,8 +1,14 @@
 {
     let e = document.getElementById("mtext")
     if (e!=null){
-        e.onkeyup = showdate;
-        e.onpaste = showdate;
+        e.addEventListener('keyup',showdate);
+        e.addEventListener('paste', showdate);
+        if (e.value===""){
+            e.value = new Date().getTime();
+            showdate();
+            e.focus();
+            e.setSelectionRange(0, e.value.length);
+        }
     }
 }
 
@@ -68,22 +74,27 @@ function time_ago(time) {
     return time;
 }
 
-function convertToDate(text) {
-    text = text.match(`(\\d+)`)
-    if (text == null) {
+function convertToDate(intext) {
+    let inp = intext.match(`(\\d+)`)
+    if (inp == null) {
         return "";
     }
-    text = text[1];
-    if (text.length == 19) {
-        text = text / 1000000;
-    } else if (text.length == 10) {
-        text = text * 1000;
-    } else if (text.length == 13) {
-        text = text / 1;
+    let unit = ""
+    inp = inp[1];
+    if (inp.length == 19) {
+        inp = inp / 1000000;
+        unit = "nanoseconds";
+    } else if (inp.length == 10) {
+        inp = inp * 1000;
+        unit = "seconds";
+    } else if (inp.length == 13) {
+        inp = inp / 1;
+        unit = "milliseconds";
     } else {
-        return "";
+        let inDate = new Date(intext);
+        return inDate.getTime();
     }
-    let theDate = new Date(text);
+    let theDate = new Date(inp);
     let dateString = theDate.toUTCString();
-    return `${dateString} (${time_ago(theDate)})`;
+    return `${dateString} (${time_ago(theDate)}) unit:${unit}`;
 }
