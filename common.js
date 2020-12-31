@@ -92,6 +92,9 @@ function convertToDate(intext) {
         unit = "milliseconds";
     } else {
         let inDate = new Date(intext);
+        if (inDate instanceof Date && isNaN(inDate)){
+            return "";
+        }
         return inDate.getTime();
     }
     let theDate = new Date(inp);
